@@ -3,18 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t nrakwtnb/udemy-Docker-k8s-React-test -f ./client/Dockerfile.dev ./client
+  - docker build -t nrakwtnb/udemy_docker-k8s_react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true nrakwtnb/udemy-Docker-k8s-React-test npm test
+  - docker run -e CI=true nrakwtnb/udemy_docker-k8s_react-test npm test
 
 after_success:
-  - docker build -t nrakwtnb/udemy-Docker-k8s-Multi-client ./client
-  - docker build -t nrakwtnb/udemy-Docker-k8s-Multi-nginx ./nginx
-  - docker build -t nrakwtnb/udemy-Docker-k8s-Multi-server ./server
-  - docker build -t nrakwtnb/udemy-Docker-k8s-Multi-worker ./worker
+  - docker build -t nrakwtnb/udemy_docker-k8s_multi-client ./client
+  - docker build -t nrakwtnb/udemy_docker-k8s_multi-nginx ./nginx
+  - docker build -t nrakwtnb/udemy_docker-k8s_multi-server ./server
+  - docker build -t nrakwtnb/udemy_docker-k8s_multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push nrakwtnb/udemy-Docker-k8s-Multi-client
-  - docker push nrakwtnb/udemy-Docker-k8s-Multi-nginx
-  - docker push nrakwtnb/udemy-Docker-k8s-Multi-server
-  - docker push nrakwtnb/udemy-Docker-k8s-Multi-worker
+  - docker push nrakwtnb/udemy_docker-k8s_multi-client
+  - docker push nrakwtnb/udemy_docker-k8s_multi-nginx
+  - docker push nrakwtnb/udemy_docker-k8s_multi-server
+  - docker push nrakwtnb/udemy_docker-k8s_multi-worker

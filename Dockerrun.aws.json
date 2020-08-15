@@ -1,39 +1,39 @@
 {
-    "AWSEBDockerrunVersion": 2,
-    "containerDefinitions": [
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "nrakwtnb/udemy_docker-k8s_multi-client",
+      "hostname": "client",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "server",
+      "image": "nrakwtnb/udemy_docker-k8s_multi-server",
+      "hostname": "api",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "worker",
+      "image": "nrakwtnb/udemy_docker-k8s_multi-worker",
+      "hostname": "worker",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "nrakwtnb/udemy_docker-k8s_multi-nginx",
+      "essential": true,
+      "portMappings": [
         {
-            "name": "client",
-            "image": "nrakwtnb/multi-client",
-            "hostname": "client",
-            "essential": false,
-            "memory": 128
-        },
-        {
-            "name": "server",
-            "image": "nrakwtnb/multi-server",
-            "hostname": "api",
-            "essential": false,
-            "memory": 128
-        },
-        {
-            "name": "worker",
-            "image": "nrakwtnb/multi-worker",
-            "hostname": "worker",
-            "essential": false,
-            "memory": 128
-        },
-        {
-            "name": "nginx",
-            "image": "nrakwtnb/multi-nginx",
-            "essential": true,
-            "portMappings": [
-                {
-                    "hostPort": 80,
-                    "containerPort": 80
-                }
-            ],
-            "links": ["client", "server"],
-            "memory": 128
+          "hostPort": 80,
+          "containerPort": 80
         }
-    ]
+      ],
+      "links": ["client", "server"],
+      "memory": 128
+    }
+  ]
 }

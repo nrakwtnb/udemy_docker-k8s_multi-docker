@@ -18,3 +18,17 @@ after_success:
   - docker push nrakwtnb/udemy_docker-k8s_multi-nginx
   - docker push nrakwtnb/udemy_docker-k8s_multi-server
   - docker push nrakwtnb/udemy_docker-k8s_multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ap-northeast-1
+  app: multi-docker
+  env: mulit-docker
+  bucket-name: elasticbeanstalk-ap-northeast-1-133425340328
+  bucket-path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
